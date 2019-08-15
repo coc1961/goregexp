@@ -19,8 +19,8 @@ func GeneroRegExp(data []string) string {
 		}
 	}
 	sort.Sort(StringSlice(data))
-	minv, _ := strconv.ParseInt(data[0], 10, 32)
-	maxv, _ := strconv.ParseInt(data[len(data)-1], 10, 32)
+	minValue, _ := strconv.ParseInt(data[0], 10, 32)
+	maxValue, _ := strconv.ParseInt(data[len(data)-1], 10, 32)
 
 	arx := make([][][]byte, 0)
 
@@ -31,7 +31,6 @@ func GeneroRegExp(data []string) string {
 			rx = append(rx, make([]byte, 0))
 		}
 		diff := -1
-		//fmt.Println(printByte1(p))
 		for i++; i < len(data); i++ {
 			a := []byte(data[i])
 			if diff == -1 {
@@ -43,34 +42,31 @@ func GeneroRegExp(data []string) string {
 					i--
 					break
 				}
-				//fmt.Println(diff)
 			}
 			if diff != compare(p, a) {
 				i--
 				break
 			}
-			//fmt.Println("  ", printByte1(a))
 			for j := diff; j < min(len(p), len(a)); j++ {
-				if !contain(rx[j], a[j]) {
+				if !contains(rx[j], a[j]) {
 					rx[j] = append(rx[j], a[j])
 				}
 			}
 		}
 		arx = append(arx, rx)
 	}
-	//fmt.Println(toString(arx))
 	for i := 0; i < dataWidth; i++ {
-		arx = compacto(arx)
+		arx = compactRegexp(arx)
 	}
 	str := toString(arx)
 
-	if !validate(data, str, minv, maxv) {
+	if !validate(data, str, minValue, maxValue) {
 		return ""
 	}
 	return str
 }
 
-func compacto(arx [][][]byte) [][][]byte {
+func compactRegexp(arx [][][]byte) [][][]byte {
 	ret := make([][][]byte, 0)
 	for i := 0; i < len(arx); i++ {
 		p := arx[i]
@@ -87,10 +83,9 @@ func compacto(arx [][][]byte) [][][]byte {
 
 		for i++; i < len(arx); i++ {
 			a := arx[i]
-			ca, cb, to, eq := compareBase(p, a)
+			ca, cb, to, eq := compareArray(p, a)
 			_ = cb
 			if ca-to == 1 && eq {
-				//fmt.Println(ca, cb, to, eq)
 				if pri {
 					tmp = append(tmp, p[to][0])
 					pri = false
@@ -104,7 +99,7 @@ func compacto(arx [][][]byte) [][][]byte {
 			}
 		}
 		if len(tmp) > 0 {
-			sort.Sort(ByteSlice(tmp))
+			sort.Sort(byteSlice(tmp))
 			arx[act][base] = tmp
 		}
 	}

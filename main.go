@@ -23,7 +23,6 @@ func main() {
 			data = append(data, str)
 		}
 	}
-	fmt.Println(data[len(data)-1])
 
 	reg := grx.GeneroRegExp(data)
 	if reg == "" {

@@ -16,7 +16,7 @@ func (b printByte) String() string {
 		} else {
 			str += "["
 			coma := ""
-			sort.Sort(ByteSlice(a))
+			sort.Sort(byteSlice(a))
 
 			x := byte(255)
 			x1 := byte(255)
