@@ -2,11 +2,12 @@ package grx
 
 import (
 	"sort"
+	"strconv"
 )
 
 //GeneroRegExp GeneroRegExp
 func GeneroRegExp(data []string) string {
-	if len(data) < 1 {
+	if len(data) < 2 {
 		return ""
 	}
 	dataWidth := -1
@@ -18,6 +19,8 @@ func GeneroRegExp(data []string) string {
 		}
 	}
 	sort.Sort(StringSlice(data))
+	minv, _ := strconv.ParseInt(data[0], 10, 32)
+	maxv, _ := strconv.ParseInt(data[len(data)-1], 10, 32)
 
 	arx := make([][][]byte, 0)
 
@@ -60,6 +63,10 @@ func GeneroRegExp(data []string) string {
 		arx = compacto(arx)
 	}
 	str := toString(arx)
+
+	if !validate(data, str, minv, maxv) {
+		return ""
+	}
 	return str
 }
 
