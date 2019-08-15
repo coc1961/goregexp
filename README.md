@@ -1,7 +1,7 @@
 # goregexp
 
 
-Calculate the regular expression based on a list of fixed width numbers
+>Calculate the regular expression based on a list of fixed width numbers
 
 example
 
@@ -17,4 +17,4 @@ $> cat test/data.txt | goregexp
 |5099[2-5][0-9]|50996[0-4]|50997[1-9]|50998[0-6]|50999[5-9])$
 ```
 
-see **data.txt** in the test folder
+>see **data.txt** in the test folder
