@@ -1,11 +1,11 @@
 package grx
 
-//StringSlice StringSlice
-type StringSlice []string
+//stringSlice stringSlice
+type stringSlice []string
 
-func (p StringSlice) Len() int           { return len(p) }
-func (p StringSlice) Less(i, j int) bool { return p[i] < p[j] }
-func (p StringSlice) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
+func (p stringSlice) Len() int           { return len(p) }
+func (p stringSlice) Less(i, j int) bool { return p[i] < p[j] }
+func (p stringSlice) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
 
 //byteSlice byteSlice
 type byteSlice []byte

@@ -58,27 +58,6 @@ func internalCompare(b1, b2 []byte) bool {
 	return cont == len(b1)
 }
 
-func contains(arr []byte, b byte) bool {
-	for _, b1 := range arr {
-		if b1 == b {
-			return true
-		}
-	}
-	return false
-}
-func compare(b1, b2 []byte) int {
-	l := min(len(b1), len(b2))
-	cont := 0
-	for i := 0; i < l; i++ {
-		if b1[i] == b2[i] {
-			cont++
-		} else {
-			break
-		}
-	}
-	return cont
-}
-
 func min(a, b int) int {
 	if a < b {
 		return a

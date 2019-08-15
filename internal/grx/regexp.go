@@ -18,7 +18,7 @@ func GeneroRegExp(data []string) string {
 			return ""
 		}
 	}
-	sort.Sort(StringSlice(data))
+	sort.Sort(stringSlice(data))
 	minValue, _ := strconv.ParseInt(data[0], 10, 32)
 	maxValue, _ := strconv.ParseInt(data[len(data)-1], 10, 32)
 
@@ -30,31 +30,12 @@ func GeneroRegExp(data []string) string {
 		for x := 0; x < dataWidth; x++ {
 			rx = append(rx, make([]byte, 0))
 		}
-		diff := -1
-		for i++; i < len(data); i++ {
-			a := []byte(data[i])
-			if diff == -1 {
-				diff = compare(p, a)
-				for j := 0; j < len(p); j++ {
-					rx[j] = append(rx[j], p[j])
-				}
-				if diff != len(p)-1 {
-					i--
-					break
-				}
-			}
-			if diff != compare(p, a) {
-				i--
-				break
-			}
-			for j := diff; j < min(len(p), len(a)); j++ {
-				if !contains(rx[j], a[j]) {
-					rx[j] = append(rx[j], a[j])
-				}
-			}
+		for x := 0; x < dataWidth; x++ {
+			rx[x] = append(rx[x], p[x])
 		}
 		arx = append(arx, rx)
 	}
+
 	for i := 0; i < dataWidth; i++ {
 		arx = compactRegexp(arx)
 	}
@@ -63,6 +44,7 @@ func GeneroRegExp(data []string) string {
 	if !validate(data, str, minValue, maxValue) {
 		return ""
 	}
+
 	return str
 }
 
@@ -78,6 +60,9 @@ func compactRegexp(arx [][][]byte) [][][]byte {
 				base--
 				break
 			}
+		}
+		if base == len(p) {
+			base--
 		}
 		act := i
 
