@@ -15,7 +15,7 @@ $> cat test/data.txt
 509005
 509006
 509007
-..more..
+..more 934 numbers..
 
 $> cat test/data.txt | goregexp
 
