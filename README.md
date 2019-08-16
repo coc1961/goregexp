@@ -6,6 +6,16 @@
 example
 
 ```sh
+$> cat test/data.txt 
+
+509000
+509001
+509002
+509004
+509005
+509006
+509007
+..more..
 
 $> cat test/data.txt | goregexp
 
