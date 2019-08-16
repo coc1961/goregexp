@@ -37,7 +37,7 @@ func GeneroRegExp(data []string) string {
 	}
 
 	for i := 0; i < dataWidth; i++ {
-		arx = compactRegexp(arx)
+		arx = calculateRegexp(arx)
 	}
 	str := toString(arx)
 
@@ -48,7 +48,7 @@ func GeneroRegExp(data []string) string {
 	return str
 }
 
-func compactRegexp(arx [][][]byte) [][][]byte {
+func calculateRegexp(arx [][][]byte) [][][]byte {
 	ret := make([][][]byte, 0)
 	for i := 0; i < len(arx); i++ {
 		p := arx[i]
