@@ -8,17 +8,19 @@ import (
 //CreateRegExp CreateRegExp
 func CreateRegExp(data []string) string {
 	if len(data) < 2 {
-		return ""
+		return "More than two numbers must be provided"
 	}
 	dataWidth := -1
 	for _, d := range data {
 		if dataWidth == -1 {
 			dataWidth = len(d)
 		} else if len(d) != dataWidth {
-			return ""
+			return "All Numbers must have the same number of digits"
 		}
 	}
 	sort.Sort(stringSlice(data))
+	data = removeDuplicates(data)
+
 	minValue, _ := strconv.ParseInt(data[0], 10, 32)
 	maxValue, _ := strconv.ParseInt(data[len(data)-1], 10, 32)
 
@@ -42,7 +44,7 @@ func CreateRegExp(data []string) string {
 	str := toString(arx)
 
 	if !validate(data, str, minValue, maxValue) {
-		return ""
+		return "Internal Validation Error"
 	}
 
 	return str
