@@ -24,7 +24,7 @@ func main() {
 		}
 	}
 
-	reg := grx.GeneroRegExp(data)
+	reg := grx.CreateRegExp(data)
 	if reg == "" {
 		return
 	}
