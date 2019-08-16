@@ -5,8 +5,8 @@ import (
 	"strconv"
 )
 
-//GeneroRegExp GeneroRegExp
-func GeneroRegExp(data []string) string {
+//CreateRegExp CreateRegExp
+func CreateRegExp(data []string) string {
 	if len(data) < 2 {
 		return ""
 	}
