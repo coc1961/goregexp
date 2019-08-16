@@ -8,7 +8,7 @@ import (
 //CreateRegExp CreateRegExp
 func CreateRegExp(data []string) string {
 	if len(data) < 2 {
-		return "More than two numbers must be provided"
+		return "More than one numbers must be provided"
 	}
 	dataWidth := -1
 	for _, d := range data {
